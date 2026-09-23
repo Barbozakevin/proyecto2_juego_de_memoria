@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Memorama Solo</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="shortcut icon" href="img/web.png" type="image/x-icon">
+</head>
+<body>
+  <h1>Juego de Memoria con Cartas de Póker</h1>
+  <div class="game-container">
+    <div class="controls">
+      <button id="start-button">Iniciar</button>
+    </div>
+
+    <div class="status-panel">
+      <div id="player-turn" class="player-turn">Turno del Jugador 1</div>
+      <div id="player1-time" class="player-time">Tiempo del Jugador 1: 60s</div>
+    </div>
+
+    <div id="game-board" class="board"></div>
+    <div id="message" class="message"></div>
+    <div id="error-message" class="error-message"></div>
+
+    <div class="cRegresar">
+      <a href="./index.html" id="button3">Regresar</a>
+    </div>
+    <audio id="matchSound">
+      <source src="./sound/check mark sound effect(MP3_160K).mp3" type="audio/mpeg">
+      Tu navegador no soporta el elemento de audio.
+    </audio>
+    <audio id="flipSound">
+      <source src="./sound/giro.mp3" type="audio/mpeg">
+      Tu navegador no soporta el elemento de audio.
+    </audio>
+  </div>
+  </body>
+<script src="./player1.js"></script>
+  </html>

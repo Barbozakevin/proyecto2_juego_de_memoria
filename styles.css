@@ -1,0 +1,291 @@
+:root {
+  font-size: 10px;
+  --bg-main: #f2efe8;
+  --bg-panel: rgba(255, 255, 255, 0.7);
+  --bg-soft: #e9e1d7;
+  --line: #cbbca7;
+  --panel: rgba(35, 34, 33, 0.78);
+  --panel-light: rgba(255, 255, 255, 0.8);
+  --gold: #caa35a;
+  --text: #2d261d;
+  --text-light: #ffffff;
+  --shadow: rgba(53, 42, 33, 0.25);
+  --card-back: linear-gradient(135deg, #efe2ca, #caa678);
+  --card-front: #fffaf1;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Times New Roman', Times, serif;
+  background: linear-gradient(180deg, #f5f1ea 0%, #ddd2c8 100%);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1.5rem 3rem;
+  overflow-y: auto;
+}
+
+.welcome-container,
+.game-container {
+  width: min(100%, 92rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+h1 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0.4rem solid rgba(72, 57, 45, 0.9);
+  padding: 1.2rem 2rem;
+  color: var(--text-light);
+  font-size: clamp(2.3rem, 4vw, 5rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: 1.6rem;
+  background: linear-gradient(135deg, rgba(144, 115, 86, 0.95), rgba(80, 62, 46, 0.9));
+  box-shadow: 0 1rem 2rem var(--shadow);
+}
+
+.cTareas {
+  margin-top: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 3rem;
+}
+
+.cCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 24rem;
+  width: min(24rem, 70vw);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 2.5rem;
+  box-shadow: 0 1.5rem 2.5rem rgba(76, 61, 50, 0.28);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.cCard:hover {
+  transform: translateY(-0.5rem) scale(1.02);
+  box-shadow: 0 2rem 3rem rgba(76, 61, 50, 0.35);
+}
+
+.h2T {
+  text-align: center;
+  color: #fffaf5;
+  font-weight: 700;
+  font-size: clamp(2.5rem, 3vw, 4rem);
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  text-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.6);
+}
+
+.board {
+  width: min(100%, 62rem);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(8rem, 1fr));
+  justify-items: center;
+  align-items: center;
+  gap: 1.3rem;
+  margin: 2rem auto 1rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.25);
+  border: 0.2rem solid rgba(93, 72, 53, 0.2);
+  border-radius: 2rem;
+}
+
+.card {
+  width: min(100%, 14rem);
+  aspect-ratio: 0.68;
+  background: var(--card-back);
+  border: 0.4rem solid rgba(78, 63, 51, 0.35);
+  border-radius: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(4.5rem, 5vw, 7rem);
+  cursor: pointer;
+  box-shadow: 0 0.8rem 1.2rem rgba(38, 28, 22, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-0.2rem) scale(1.03);
+  box-shadow: 0 1rem 1.8rem rgba(38, 28, 22, 0.2);
+}
+
+.card.flipped {
+  background: var(--card-front);
+  border-color: rgba(118, 90, 64, 0.5);
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1.5rem 0 1rem;
+}
+
+#start-button,
+#start-button2 {
+  padding: 1.2rem 2.8rem;
+  font-size: clamp(1.8rem, 2vw, 3rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-light);
+  background: linear-gradient(135deg, #6a5443, #31251a);
+  border: 0.2rem solid rgba(255, 255, 255, 0.3);
+  border-radius: 999px;
+  box-shadow: 0 0.8rem 1.5rem rgba(42, 33, 27, 0.25);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#start-button:hover,
+#start-button2:hover,
+#start-button:focus,
+#start-button2:focus,
+#start-button:active,
+#start-button2:active {
+  transform: translateY(-0.1rem) scale(1.02);
+  box-shadow: 0 1rem 2rem rgba(42, 33, 27, 0.3);
+}
+
+.scoreboard {
+  width: min(90%, 52rem);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(15rem, 1fr));
+  gap: 1.5rem;
+  margin: 1rem auto 0;
+}
+
+.score-card {
+  background: var(--panel-light);
+  border: 0.2rem solid rgba(87, 70, 57, 0.18);
+  border-radius: 1.5rem;
+  padding: 1.3rem 1rem;
+  box-shadow: 0 0.5rem 1rem rgba(46, 38, 32, 0.1);
+  transition: all 0.2s ease;
+}
+
+.score-card.active {
+  border-color: rgba(146, 112, 61, 0.9);
+  box-shadow: 0 0.8rem 1.8rem rgba(146, 112, 61, 0.2);
+}
+
+.score-label {
+  display: block;
+  font-size: 1.7rem;
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 0.08rem;
+}
+
+.score-value {
+  display: block;
+  font-size: 3.8rem;
+  color: var(--gold);
+  font-weight: 700;
+  margin-top: 0.7rem;
+}
+
+.status-panel {
+  width: min(90%, 60rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+}
+
+.player-turn,
+.player-time {
+  font-size: clamp(1.8rem, 2vw, 2.5rem);
+  text-transform: uppercase;
+  color: var(--text);
+  font-weight: 700;
+}
+
+.message {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #1d6f2d;
+  display: none;
+  margin-top: 0.8rem;
+}
+
+.error-message {
+  margin-top: 0.8rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #a91f1f;
+  display: none;
+}
+
+.cRegresar {
+  display: flex;
+  justify-content: flex-end;
+  width: min(90%, 70rem);
+  margin-top: 2rem;
+}
+
+#button3 {
+  display: inline-block;
+  padding: 0.8rem 1.7rem;
+  font-size: clamp(2rem, 2vw, 3rem);
+  color: var(--text-light);
+  border-radius: 999px;
+  border: 0.2rem solid rgba(56, 49, 45, 0.8);
+  box-shadow: 0 0.8rem 1.5rem rgba(39, 31, 24, 0.2);
+  text-decoration: none;
+  text-align: center;
+  background: linear-gradient(135deg, rgba(121, 103, 85, 0.96), rgba(66, 52, 41, 0.92));
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#button3:hover,
+#button3:focus,
+#button3:active {
+  transform: translateY(-0.1rem) scale(1.02);
+  box-shadow: 0 1rem 2rem rgba(39, 31, 24, 0.28);
+}
+
+@media (max-width: 700px) {
+  .board {
+    grid-template-columns: repeat(3, minmax(6rem, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 9rem;
+  }
+
+  .scoreboard {
+    grid-template-columns: 1fr;
+  }
+
+  .cRegresar {
+    justify-content: center;
+  }
+}
