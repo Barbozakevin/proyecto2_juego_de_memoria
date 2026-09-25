@@ -12,6 +12,8 @@ let moves = 0;
 let currentPlayer = 1;
 let player1Time = 60;
 let gameInterval;
+let revealInterval;
+let revealTimeout;
 let gameStarted = false;
 let isRevealing = false;
 
@@ -108,17 +110,28 @@ function displayErrorMessage(message) {
 
 function showCardsForSeconds(seconds) {
   isRevealing = true;
+  let remainingSeconds = seconds;
+  const previewTime = document.getElementById('preview-time');
+  clearInterval(revealInterval);
+  previewTime.textContent = `Memorización: ${remainingSeconds}s`;
   cards.forEach(card => {
     card.textContent = card.dataset.symbol;
     card.classList.add('flipped');
   });
 
-  setTimeout(() => {
+  revealInterval = setInterval(() => {
+    remainingSeconds--;
+    previewTime.textContent = `Memorización: ${remainingSeconds}s`;
+  }, 1000);
+
+  revealTimeout = setTimeout(() => {
+    clearInterval(revealInterval);
     cards.forEach(card => {
       card.textContent = '';
       card.classList.remove('flipped', 'enlarged', 'unflip');
     });
     isRevealing = false;
+    previewTime.textContent = '¡Empieza a encontrar las parejas!';
     gameStarted = true;
     updateBoard();
     startTimer();
@@ -150,6 +163,9 @@ function startTimer() {
 
 function startGame() {
   const gameBoard = document.getElementById('game-board');
+  clearInterval(gameInterval);
+  clearTimeout(revealTimeout);
+  clearInterval(revealInterval);
   gameBoard.innerHTML = '';
   cards = [];
   flippedCards = [];
@@ -157,6 +173,7 @@ function startGame() {
   moves = 0;
   currentPlayer = 1;
   gameStarted = false;
+  document.getElementById('start-button').textContent = 'Reiniciar';
   displayMessage('');
 
   player1Time = 60;

@@ -522,6 +522,13 @@ body {
   font-size: 2rem;
 }
 
+.preview-time {
+  min-height: 2.2rem;
+  color: #ffcc66;
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+
 .player-time {
   color: var(--text-muted);
   font-size: 1.4rem;
@@ -529,7 +536,7 @@ body {
 
 .board {
   width: min(100%, 38rem);
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 1rem;
   margin: 0.8rem auto;
   padding: 1rem;
@@ -591,6 +598,7 @@ body {
   }
 
   .board {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 0.7rem;
     padding: 0.7rem;
   }
