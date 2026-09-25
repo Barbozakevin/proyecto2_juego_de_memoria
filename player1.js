@@ -3,7 +3,7 @@ const symbols = [
   '🂮', '🂱', '🂲', '🂳', '🂴', '🂵', '🂶', '🂷', '🂸', '🂹', '🂺', '🂻'
 ];
 
-const totalPairs = 8;
+const totalPairs = 5;
 const revealSeconds = 10;
 let cards = [];
 let flippedCards = [];

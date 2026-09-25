@@ -3,7 +3,7 @@ const symbols = [
   '🂮', '🂱', '🂲', '🂳', '🂴', '🂵', '🂶', '🂷', '🂸', '🂹', '🂺', '🂻'
 ];
 
-const totalPairs = 8;
+const totalPairs = 5;
 const revealSeconds = 10;
 let cards = [];
 let flippedCards = [];
@@ -17,13 +17,18 @@ let scores = { 1: 0, 2: 0 };
 let gameFinished = false;
 let gameStarted = false;
 let isRevealing = false;
+let playerNames = { 1: 'Jugador 1', 2: 'Jugador 2' };
 
 function updateScoreboard() {
   const score1 = document.getElementById('score1-value');
   const score2 = document.getElementById('score2-value');
+  const label1 = document.getElementById('score1-label');
+  const label2 = document.getElementById('score2-label');
 
   if (score1) score1.textContent = scores[1];
   if (score2) score2.textContent = scores[2];
+  if (label1) label1.textContent = playerNames[1];
+  if (label2) label2.textContent = playerNames[2];
 
   document.querySelectorAll('.score-card').forEach((card) => {
     const isActive = Number(card.dataset.player) === currentPlayer;
@@ -88,8 +93,8 @@ function checkMatch() {
       const winner = scores[1] === scores[2]
         ? 'Empate'
         : scores[1] > scores[2]
-          ? 'Jugador 1'
-          : 'Jugador 2';
+          ? playerNames[1]
+          : playerNames[2];
       displayMessage(`Partida terminada. ${winner} gana con ${scores[1]} - ${scores[2]} aciertos.`);
       return;
     }
@@ -160,11 +165,11 @@ function switchPlayer() {
 function updateBoard() {
   const playerTurn = document.getElementById('player-turn');
   if (playerTurn) {
-    playerTurn.textContent = `Turno del Jugador ${currentPlayer}`;
+    playerTurn.textContent = `Turno de ${playerNames[currentPlayer]}`;
   }
 
-  document.getElementById('player1-time').textContent = `Tiempo del Jugador 1: ${player1Time}s`;
-  document.getElementById('player2-time').textContent = `Tiempo del Jugador 2: ${player2Time}s`;
+  document.getElementById('player1-time').textContent = `Tiempo de ${playerNames[1]}: ${player1Time}s`;
+  document.getElementById('player2-time').textContent = `Tiempo de ${playerNames[2]}: ${player2Time}s`;
   updateScoreboard();
 }
 
@@ -180,7 +185,7 @@ function startTimer() {
         clearInterval(gameInterval);
         gameFinished = true;
         gameStarted = false;
-        displayMessage(`Tiempo agotado. El Jugador 2 gana por tiempo.`);
+        displayMessage(`Tiempo agotado. ${playerNames[2]} gana por tiempo.`);
       }
     } else {
       player2Time--;
@@ -189,7 +194,7 @@ function startTimer() {
         clearInterval(gameInterval);
         gameFinished = true;
         gameStarted = false;
-        displayMessage(`Tiempo agotado. El Jugador 1 gana por tiempo.`);
+        displayMessage(`Tiempo agotado. ${playerNames[1]} gana por tiempo.`);
       }
     }
 
@@ -220,10 +225,30 @@ function startGame() {
   showCardsForSeconds(revealSeconds);
 }
 
-document.getElementById('start-button').addEventListener('click', () => {
+function startMultiplayer() {
+  const player1Input = document.getElementById('player1-name');
+  const player2Input = document.getElementById('player2-name');
+  const name1 = player1Input.value.trim();
+  const name2 = player2Input.value.trim();
+
+  if (!name1 || !name2) {
+    const lobbyError = document.getElementById('lobby-error');
+    lobbyError.textContent = 'Escriban los dos nombres para comenzar.';
+    lobbyError.style.display = 'block';
+    return;
+  }
+
+  document.getElementById('lobby-error').style.display = 'none';
+
+  playerNames = { 1: name1, 2: name2 };
+  document.getElementById('lobby').hidden = true;
+  document.getElementById('game-screen').hidden = false;
   currentPlayer = 1;
   startGame();
-});
+}
+
+document.getElementById('start-button').addEventListener('click', startMultiplayer);
+document.getElementById('restart-button').addEventListener('click', startGame);
 
 updateBoard();
 

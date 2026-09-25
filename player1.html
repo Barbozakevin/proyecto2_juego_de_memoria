@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <title>Memorama Solo</title>
@@ -7,14 +7,18 @@
   <link rel="shortcut icon" href="img/web.png" type="image/x-icon">
 </head>
 <body>
-  <h1>Juego de Memoria con Cartas de Póker</h1>
   <div class="game-container">
+    <header class="game-header">
+      <p class="eyebrow">Modo solo</p>
+      <h1>Memorama de póker</h1>
+      <p class="subtitle">Encuentra todas las parejas antes de que se acabe el tiempo.</p>
+    </header>
     <div class="controls">
-      <button id="start-button">Iniciar</button>
+      <button id="start-button" type="button">Iniciar partida</button>
     </div>
 
     <div class="status-panel">
-      <div id="player-turn" class="player-turn">Turno del Jugador 1</div>
+      <div id="player-turn" class="player-turn">Tu partida está lista</div>
       <div id="player1-time" class="player-time">Tiempo del Jugador 1: 60s</div>
     </div>
 

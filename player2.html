@@ -1,50 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Memorama Multiplayer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memorama Multijugador</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="shortcut icon" href="img/web.png" type="image/x-icon">
 </head>
 <body>
   <div class="game-container">
-    <h1>Juego de Memoria con Cartas de Póker</h1>
-
-    <div class="controls">
-      <button id="start-button">Iniciar</button>
-    </div>
-
-    <div class="scoreboard">
-      <div class="score-card active" data-player="1">
-        <span class="score-label">Jugador 1</span>
-        <span class="score-value" id="score1-value">0</span>
+    <section id="lobby" class="lobby-panel">
+      <p class="eyebrow">Modo multijugador</p>
+      <h1>Preparen la partida</h1>
+      <p class="subtitle">Escriban sus nombres y descubran quién tiene mejor memoria.</p>
+      <div class="name-fields">
+        <label for="player1-name">Jugador 1
+          <input id="player1-name" type="text" maxlength="16" placeholder="Ej. Ana" autocomplete="off">
+        </label>
+        <label for="player2-name">Jugador 2
+          <input id="player2-name" type="text" maxlength="16" placeholder="Ej. Luis" autocomplete="off">
+        </label>
       </div>
-      <div class="score-card" data-player="2">
-        <span class="score-label">Jugador 2</span>
-        <span class="score-value" id="score2-value">0</span>
+      <p id="lobby-error" class="error-message"></p>
+      <button id="start-button" type="button">Iniciar partida</button>
+    </section>
+
+    <section id="game-screen" class="game-screen" hidden>
+      <header class="game-header">
+        <p class="eyebrow">Partida en curso</p>
+        <h1>Memorama de póker</h1>
+        <p class="subtitle">Encuentren las parejas por turnos.</p>
+      </header>
+
+      <div class="controls">
+        <button id="restart-button" type="button">Nueva partida</button>
       </div>
-    </div>
 
-    <div class="status-panel">
-      <div id="player-turn" class="player-turn">Turno del Jugador 1</div>
-      <div id="player1-time" class="player-time">Tiempo del Jugador 1: 60s</div>
-      <div id="player2-time" class="player-time">Tiempo del Jugador 2: 60s</div>
-    </div>
+      <div class="scoreboard">
+        <div class="score-card active" data-player="1">
+          <span class="score-label" id="score1-label">Jugador 1</span>
+          <span class="score-value" id="score1-value">0</span>
+        </div>
+        <div class="score-card" data-player="2">
+          <span class="score-label" id="score2-label">Jugador 2</span>
+          <span class="score-value" id="score2-value">0</span>
+        </div>
+      </div>
 
-    <div id="game-board" class="board"></div>
-    <div id="message" class="message"></div>
-    <div id="error-message" class="error-message"></div>
+      <div class="status-panel">
+        <div id="player-turn" class="player-turn">Turno del Jugador 1</div>
+        <div id="player1-time" class="player-time">Tiempo del Jugador 1: 60s</div>
+        <div id="player2-time" class="player-time">Tiempo del Jugador 2: 60s</div>
+      </div>
 
-    <div class="cRegresar">
-      <a href="./index.html" id="button3">Regresar</a>
-    </div>
+      <div id="game-board" class="board"></div>
+      <div id="message" class="message"></div>
+      <div id="error-message" class="error-message"></div>
+
+      <div class="cRegresar">
+        <a href="./index.html" id="button3">Regresar</a>
+      </div>
+    </section>
+
     <audio id="matchSound">
       <source src="./sound/check mark sound effect(MP3_160K).mp3" type="audio/mpeg">
-      Tu navegador no soporta el elemento de audio.
     </audio>
     <audio id="flipSound">
       <source src="./sound/giro.mp3" type="audio/mpeg">
-      Tu navegador no soporta el elemento de audio.
     </audio>
   </div>
   <script src="./player2.js"></script>
